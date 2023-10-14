@@ -1,0 +1,24 @@
+
+
+namespace Project1evm.Library
+{
+
+    public abstract class Figure<T> where T : INumber<T>
+    {
+        public string Name { get; }
+
+        public FigureType Type { get; }
+
+        protected Figure(string name, FigureType type)
+        {
+            Name = name;
+            Type = type;
+        }
+
+        public abstract T CalculatePerimeter();
+
+        public abstract T CalculateSquare();
+
+        public abstract T CalculateVolume();
+    }
+}

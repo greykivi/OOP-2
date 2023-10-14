@@ -1,0 +1,52 @@
+namespace Project1evm.Library
+{
+    public class Triangle<T> : Figure<T> where T : INumber<T>
+    {
+        readonly T _a;
+        readonly T _b;
+        readonly T _c;
+
+        public Triangle(T a, T b, T c) : base(nameof(Triangle<T>), FigureType.ThreeD)
+        {
+            if (a <= T.Zero)
+            {
+                throw new ArgumentOutOfRangeException(nameof(a));
+            }
+            _a = a;
+            if (b <= T.Zero)
+            {
+                throw new ArgumentOutOfRangeException(nameof(b));
+            }
+            _b = b;
+            if (c <= T.Zero)
+            {
+                throw new ArgumentOutOfRangeException(nameof(c));
+            }
+            _c = c;
+        }
+        public void Deconstruct(out T a, out T b, out T c)
+        {
+            a = _a;
+            b = _b;
+            c = _c;
+        }
+
+        public override T CalculatePerimeter()
+        {
+            return (_a + _b + _c); 
+        }
+        public override T CalculateSquare()
+        {
+            T _p = ((_a + _b + _c) / T.CreateChecked(2));
+            return (T)Convert.ChangeType(Math.Round(Math.Sqrt(Convert.ToDouble(_p * (_p - _a) * (_p - _b) * (_p - _c))), 3), typeof(T));
+
+        }
+        public override T CalculateVolume()
+        {
+         
+            throw new ArgumentOutOfRangeException();
+
+        }
+    }
+}
+
